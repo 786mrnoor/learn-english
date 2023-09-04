@@ -10,3 +10,22 @@ body {
     justify-content: center;
     align-items: center;
 }
+button {
+    background-color: white;
+    color: royalblue;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    transition: 0.4s all;
+    border-radius: 10px;
+}
+
+button:hover {
+    box-shadow: 3px 3px 5px rgb(0, 0, 0);
+}
+
+button:active {
+    scale: 0.9;
+}

@@ -1,0 +1,42 @@
+nav {
+    background-color: royalblue;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: block;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    transition: 0.4s all;
+    border-radius: 10px;
+}
+
+nav ul li a.active {
+    background-color: white;
+    color: royalblue;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: royalblue;
+    box-shadow: 3px 3px 5px rgb(0, 0, 0);
+}
+
+nav ul li a:active {
+    scale: 0.9;
+}

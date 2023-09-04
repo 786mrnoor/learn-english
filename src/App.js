@@ -1,14 +1,21 @@
-import { useState } from 'react';
 import './App.css';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import Contact from './Contact';
+import About from './About';
+import Nav from './Nav';
 
 function App() {
-  const [clicked, setClicked] = useState(0);
   return (
-    <div className="App">
-      <h1>This is Only Test Purpose</h1>
-      <h1>You Clicked {clicked}</h1>
-      <button onClick={() => setClicked(clicked + 1)}>Click Me</button>
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route path='/' element={<Nav />} >
+          <Route index element={<Home />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
 

@@ -1,0 +1,104 @@
+:root {
+    --bgColor: linear-gradient(90deg, #0140ff, #f8bfbf);
+}
+
+.loginContainer {
+    margin: 100px auto;
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px black;
+    padding: 30px;
+}
+
+.loginContainer h1 {
+    text-align: center;
+}
+
+.loginContainer main {
+    padding: 0 0 20px 0;
+}
+
+.loginContainer main .inputField {
+    position: relative;
+    margin-top: 25px;
+}
+
+.loginContainer main .inputField input {
+    color: royalblue;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid royalblue;
+    outline: none;
+}
+
+.loginContainer main .inputField input:focus {
+    box-shadow: 0px 0px 7px royalblue;
+}
+
+.loginContainer main .inputField input:focus~span,
+.loginContainer main .inputField input:valid~span {
+    padding: 2px 6px;
+    transform: translate(8px, -13px);
+    background-color: royalblue;
+    color: white;
+    font-size: 14px;
+}
+
+.loginContainer main .inputField p {
+    color: red;
+    margin-top: 8px;
+    display: none;
+}
+
+.loginContainer main .inputField span {
+    color: royalblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 17px;
+    pointer-events: none;
+    user-select: none;
+    transition: 0.3s all;
+}
+
+.loginContainer footer button {
+    width: 100%;
+    background: var(--bgColor);
+    padding: 10px;
+    color: white;
+    outline: none;
+    border: 1px solid royalblue;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 19px;
+    margin-bottom: 25px;
+    transition: 0.3s all;
+    box-shadow: 2px 2px 5px rgb(95, 95, 95);
+}
+
+.loginContainer footer button:active {
+    box-shadow: inset 2px 2px 6px rgb(82, 82, 82);
+}
+
+.loginContainer footer button:focus {
+    outline: 3px solid #03A9F4;
+}
+
+.loginContainer footer p {
+    text-align: center;
+}
+
+.loginContainer footer p a {
+    color: royalblue;
+    text-decoration: none;
+    outline: none;
+}
+
+.loginContainer footer p a:focus {
+    border: 1px dashed royalblue;
+}

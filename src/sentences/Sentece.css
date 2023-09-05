@@ -1,0 +1,25 @@
+.addBtnBox {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border-radius: 50%;
+}
+
+.addBtnBox button {
+    outline: none;
+    border: none;
+    font-size: 50px;
+    font-weight: 600;
+    border-radius: 50%;
+    height: 70px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: white;
+    color: royalblue;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.addBtnBox button:hover {
+    box-shadow: 2px 2px 10px black;
+}

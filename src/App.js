@@ -1,20 +1,48 @@
 import './App.css';
-import { HashRouter, Route, Routes } from 'react-router-dom';
-import Home from './Home';
-import Contact from './Contact';
-import About from './About';
-import Nav from './Nav';
+import { HashRouter } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import UserContext from './component/UserContext';
+import MyRoutes from './component/MyRoutes';
+import Loader from './component/Loader';
+
+import { getCurrentUser } from './serverConfig/Authentication';
 
 function App() {
+  const [appUser, setAppUser] = useState(null);
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    console.log("useEffect");
+    setShowLoader(true);
+    getCurrentUser(setUser);
+  }, []);
+
+  function setUser(type, u) {
+    if (type === 'login') {
+      setAppUser({
+        email: u.email,
+        name: u.displayName,
+        photoURL: u.photoURL,
+        id: u.uid
+      });
+      setShowLoader(false);
+    }
+    if (type === 'logout') {
+      setShowLoader(false)
+      setAppUser('logout');
+    }
+  }
+  console.log('App');
+
+
   return (
     <HashRouter>
-      <Routes>
-        <Route path='/' element={<Nav />} >
-          <Route index element={<Home />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/about' element={<About />} />
-        </Route>
-      </Routes>
+      <UserContext.Provider value={appUser}>
+
+        <Loader showLoader={showLoader} />
+        <MyRoutes />
+
+      </UserContext.Provider>
     </HashRouter>
   );
 }

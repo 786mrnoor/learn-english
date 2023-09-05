@@ -1,0 +1,109 @@
+.popUp {
+    position: fixed;
+    z-index: 999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.popUp .addBox {
+    margin: 50px auto;
+    background-color: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px black;
+    animation: rot 1.4s ease;
+}
+
+@keyframes rot {
+    0% {
+        transform: scale(0.2);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.popUp .addBox header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 6px black;
+    border-radius: 20px 20px 0 0;
+}
+
+.popUp .addBox main {
+    padding: 20px;
+}
+
+.popUp .addBox main ul {
+    list-style: none;
+}
+
+.popUp .addBox main ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 15px;
+    padding: 8px;
+    background-color: aliceblue;
+    border: 1px solid #84c5fe;
+    border-radius: 5px;
+}
+
+.popUp .addBox main ul li input,
+.popUp .addBox main ul li select {
+    width: 100%;
+    padding: 4px;
+    outline: none;
+    border: 1px solid #84c5fe;
+    font-size: 17px;
+}
+
+.popUp .addBox main ul li input:focus,
+.popUp .addBox main ul li select:focus {
+    box-shadow: 0px 0px 5px #65a3db;
+}
+
+.popUp .addBox footer {
+    padding: 20px;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.popUp .addBox header button,
+.popUp .addBox footer button {
+    padding: 10px 15px;
+    background-color: royalblue;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.popUp .addBox header button:focus,
+.popUp .addBox footer button:focus {
+    outline: 3px solid royalblue;
+    outline-offset: 4px;
+}
+
+.popUp .addBox header button:active,
+.popUp .addBox footer button:active {
+    outline-offset: -6px;
+    outline-color: white;
+}
+
+.popUp .addBox header button:hover,
+.popUp .addBox footer button:hover {
+    box-shadow: 0px 0px 6px rgb(73, 73, 73);
+}

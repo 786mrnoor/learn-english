@@ -1,15 +1,16 @@
 import './Nav.css'
 import { NavLink, Outlet } from "react-router-dom";
+import Profile from './Profile';
 
 export default function Nav() {
     return (
         <>
-            <nav>
+            <nav className="topNav">
                 <ul>
-                    <li><NavLink to='/'>Home</NavLink></li>
-                    <li><NavLink to='contact'>Contact</NavLink></li>
-                    <li><NavLink to='about'>About</NavLink></li>
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="verbs">Verbs</NavLink></li>
                 </ul>
+                <Profile />
             </nav>
             <Outlet />
         </>

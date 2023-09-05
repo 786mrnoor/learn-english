@@ -1,0 +1,39 @@
+.tableContainer {
+    width: 90%;
+    padding: 30px;
+    background-color: white;
+    margin: 50px auto 150px auto;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid royalblue;
+}
+
+table th {
+    background-color: royalblue;
+    color: white;
+    border-color: white;
+}
+
+table th,
+table td {
+    padding: 10px 5px;
+}
+
+table td button {
+    background-color: royalblue;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    cursor: pointer;
+}
+
+table tr.cpt {
+    background-color: #b9ebb9;
+}

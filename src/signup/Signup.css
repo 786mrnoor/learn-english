@@ -1,0 +1,134 @@
+.signupContainer {
+    margin: 100px auto;
+    width: 90%;
+    max-width: 450px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px black;
+    padding: 30px;
+}
+
+.signupContainer h1 {
+    text-align: center;
+}
+
+.signupContainer main {
+    padding: 0 0 20px 0;
+}
+
+.signupContainer main .inputField {
+    position: relative;
+    margin-top: 30px;
+}
+
+.signupContainer main .inputField input {
+    color: royalblue;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid royalblue;
+    outline: none;
+}
+
+.signupContainer main .inputField input:focus {
+    box-shadow: 0px 0px 7px royalblue;
+}
+
+.signupContainer main .inputField input:focus~span,
+.signupContainer main .inputField input:valid~span {
+    padding: 2px 6px;
+    transform: translate(8px, -13px);
+    background-color: royalblue;
+    color: white;
+    font-size: 14px;
+}
+
+.signupContainer main .inputField span {
+    color: royalblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 17px;
+    pointer-events: none;
+    user-select: none;
+    transition: 0.3s all;
+}
+
+.signupContainer main .inputField p {
+    color: red;
+    margin-top: 8px;
+}
+
+.signupContainer footer button {
+    width: 100%;
+    background: var(--bgColor);
+    padding: 10px;
+    color: white;
+    outline: none;
+    border: 1px solid royalblue;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 19px;
+    margin-bottom: 25px;
+    transition: 0.3s all;
+    box-shadow: 2px 2px 5px rgb(95, 95, 95);
+}
+
+.signupContainer footer button:active {
+    box-shadow: inset 2px 2px 6px rgb(82, 82, 82);
+}
+
+.signupContainer footer button:focus {
+    outline: 3px solid #03A9F4;
+}
+
+.signupContainer footer p {
+    text-align: center;
+}
+
+.signupContainer footer p a {
+    color: royalblue;
+    text-decoration: none;
+    outline: none;
+}
+
+.signupContainer footer p a:focus {
+    border: 1px dashed royalblue;
+}
+
+.signupContainer main .passwordChecker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.signupContainer main .passwordChecker p {
+    margin-bottom: 6px;
+}
+
+.signupContainer main .passwordChecker p::before {
+    content: '';
+    width: 10px;
+    aspect-ratio: 1;
+    background-color: rgb(10, 190, 10);
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.signupContainer main .passwordChecker p.validate::before {
+    background-color: rgb(200, 200, 200);
+}
+
+.signupContainer main .passwordChecker p.validate {
+    color: gray;
+}
+
+@media (width < 475px) {
+    .signupContainer main .passwordChecker {
+        grid-template-columns: 1fr;
+    }
+}

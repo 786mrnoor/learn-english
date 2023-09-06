@@ -8,7 +8,6 @@ const initialVal = {
 export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) {
     const [data, setData] = useState(initialVal);
     const [isEditable, setIsEditable] = useState(false);
-    console.log(data);
 
     if (isEditable !== editable) {
         if (editable) {

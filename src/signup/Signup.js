@@ -102,7 +102,6 @@ export default function SignUp() {
             setErr((e) => { return { ...e, pass: '' } });
         }
         if (valid) {
-            console.log(obj);
             setShowLoader(true);
             signup(obj, showOutPut)
         }

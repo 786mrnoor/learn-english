@@ -2,22 +2,47 @@ import './Profile.css'
 import { NavLink } from "react-router-dom";
 
 import pic from './pic.jpg'
+import Loader from './Loader';
 import { useContext, useState } from 'react';
 import UserContext from './UserContext';
-import { logout } from '../serverConfig/Authentication';
+import { logout, auth } from '../serverConfig/Authentication';
+import { profilePicUpload } from '../serverConfig/storage';
 
 export default function Profile() {
+    const [showLoader, setShowLoader] = useState(false);
     const [show, setShow] = useState(false);
     const appUser = useContext(UserContext);
+    if (appUser !== 'logout' && appUser !== null) {
+        if (!appUser.name) {
+            appUser.name = auth.currentUser.displayName;
+        }
+    }
+    function handleInput(e) {
+        let file = e.target.files[0];
+        if (file.type.includes('image')) {
+            setShowLoader(true);
+            profilePicUpload(appUser.id, file, showOutPut)
+        }
+        else {
+            alert('Upload Only Image File')
+        }
+    }
+    function showOutPut(type, u) {
+        if (type === 'signup') {
+            appUser.photoURL = u.photoURL;
+            setShowLoader(false);
+        }
+    }
 
     return (
         <>
+            <Loader showLoader={showLoader} />
             <img src={appUser ? appUser.photoURL ? appUser.photoURL : pic : pic} alt="Profile" onClick={() => setShow(!show)} />
             <div className="profile" style={{ display: show ? 'block' : 'none' }} >
                 <p>{appUser ? appUser.email : ''}</p>
                 <div className="imgContainer">
                     <img src={appUser ? appUser.photoURL ? appUser.photoURL : pic : pic} alt="" />
-                    <input type="file" id='ProfilePicBtn' style={{ display: 'none' }} accept="image/*" multiple={false} />
+                    <input type="file" id='ProfilePicBtn' onInput={handleInput} style={{ display: 'none' }} accept="image/*" multiple={false} />
                     <label htmlFor="ProfilePicBtn">edit</label>
                     <h2>Hi, <span id="name">{appUser ? appUser.name : ''}</span>!</h2>
                     <NavLink to="manage-account">Mange your account</NavLink>

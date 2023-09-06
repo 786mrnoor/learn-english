@@ -12,7 +12,6 @@ function App() {
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect");
     setShowLoader(true);
     getCurrentUser(setUser);
   }, []);
@@ -32,7 +31,6 @@ function App() {
       setAppUser('logout');
     }
   }
-  console.log('App');
 
 
   return (

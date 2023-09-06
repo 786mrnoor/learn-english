@@ -22,7 +22,6 @@ export default function Sentences() {
     const appUser = useContext(UserContext);
     const [showLoader, setShowLoader] = useState(false);
     const navigate = useNavigate();
-    console.log('app', appUser);
 
     useEffect(() => {
         if (appUser !== 'logout' && appUser !== null) {

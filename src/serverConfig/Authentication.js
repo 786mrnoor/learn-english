@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 import app from './firebaseApp'
 const auth = getAuth(app);
@@ -14,17 +14,27 @@ function getCurrentUser(setUser) {
     });
 }
 
+function updateUserPic(data, showOutPut) {
+    updateProfile(auth.currentUser, data)
+        .then(() => {
+            showOutPut('signup', auth.currentUser);
+        }).catch((error) => {
+            console.log(error.code);
+            console.log(error.message);
+        });
+}
+
 function signup(obj, showOutPut) {
     createUserWithEmailAndPassword(auth, obj.email, obj.pass)
         .then((userCredential) => {
             // const user = userCredential.user;
-            updateProfile(auth.currentUser, {
-                displayName: obj.name
-            })
+            // updateUserProfile({ displayName: obj.name }, showOutPut)
+            updateProfile(auth.currentUser, { displayName: obj.name })
                 .then(() => {
                     showOutPut('signup');
                 }).catch((error) => {
-
+                    console.log(error.code);
+                    console.log(error.message);
                 });
         })
         .catch((error) => {
@@ -54,4 +64,5 @@ function logout() {
     });
 }
 
-export { getCurrentUser, signup, login, logout }
+
+export { auth, getCurrentUser, signup, login, logout, updateUserPic }

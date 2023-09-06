@@ -1,5 +1,5 @@
-import { getDatabase, ref, get, set, child, update, remove } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-database.js";
 import app from './firebaseApp';
+import { getDatabase, ref, get, set, child, update, remove } from "firebase/database";
 
 const db = getDatabase(app);
 
@@ -32,7 +32,7 @@ function getAllData(adrs, setData, setLoad) {
         .catch(err => {
             console.log(err.code);
             console.log(err.message);
-            if (err.message == 'Permission denied') {
+            if (err.message === 'Permission denied') {
                 // logout();
             }
         })

@@ -37,7 +37,7 @@ function App() {
     <HashRouter>
       <UserContext.Provider value={appUser}>
 
-        <Loader showLoader={showLoader} />
+        {/* <Loader showLoader={showLoader} /> */}
         <MyRoutes />
 
       </UserContext.Provider>

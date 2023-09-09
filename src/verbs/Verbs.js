@@ -1,44 +1,114 @@
+import './Verbs.css'
+import { useContext, useEffect, useState } from 'react';
+import UserContext from '../component/UserContext';
+import { useNavigate } from 'react-router-dom';
+import { uniqueId, getAllData, InsertData, updateData, deleteData } from '../serverConfig/Database';
+
+import Loader from '../component/Loader';
+import Filter from './Filter'
+import Table from './Table'
+import AddUpdate from './AddUpdate';
+
 export default function Verbs() {
+    const [db, setDb] = useState([]);
+    const [data, setData] = useState([]);
+    const [showPopUp, setShowPopUp] = useState(false);
+    const [editable, setEditable] = useState(false);
+
+    function setBoth(d) {
+        setDb(d);
+        setData(d);
+    }
+    const appUser = useContext(UserContext);
+    const [showLoader, setShowLoader] = useState(true);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (appUser !== 'logout' && appUser !== null) {
+            getAllData(`verbs/${appUser.id}`, setBoth, setShowLoader);
+        }
+        if (appUser === 'logout') {
+            navigate('login');
+        }
+    }, [appUser]);
+
+    function filterData(obj) {
+        let inputVal = obj.input.toUpperCase();
+        let typeVal = obj.type;
+
+        let newData = db.filter((item) => {
+            for (let i of item.verb) {
+                if (
+                    (i.toUpperCase().includes(inputVal)) &&
+                    (typeVal == 'All' || typeVal == item.type) &&
+                    (obj.statusFilter === 'All' || obj.statusFilter === item.sts)
+                ) {
+                    return true;
+                };
+            }
+            return false;
+        });
+        setData(newData);
+    }
+    function tableAction(type, id) {
+        if (type === 'edit') {
+            setShowPopUp(true);
+            let obj = {
+                id: id.id,
+                mean: id.mean,
+                type: id.type,
+                verb0: id.verb[0],
+                verb1: id.verb[1],
+                verb2: id.verb[2],
+                verb3: id.verb[3],
+                verb4: id.verb[4],
+                time: id.time,
+                sts: id.sts
+            }
+            setEditable(obj);
+        }
+        if (type === 'del') {
+            if (window.confirm('Do You Want to Delete The Verb.')) {
+                setShowLoader(true);
+                deleteData(id, `verbs/${appUser.id}`, setBoth, setShowLoader);
+            }
+        }
+        if (type === 'cpt') {
+            if (window.confirm(`Do You Want to ${id.sts === 'cpt' ? 'InComplete' : 'Complete'} The Question`)) {
+                let obj = { sts: id.sts === 'cpt' ? 'inCpt' : 'cpt' };
+                setShowLoader(true);
+                updateData(obj, id.id, `verbs/${appUser.id}`, setBoth, setShowLoader);
+            }
+        }
+    }
+    function addUpdate(type, obj) {
+        setShowLoader(true);
+        setShowPopUp(false);
+        obj.time = JSON.stringify(new Date())
+        if (type === 'Add') {
+            obj.id = uniqueId();
+            obj.sts = 'inCpt';
+            InsertData(obj, `verbs/${appUser.id}`, setBoth, setShowLoader);
+        }
+        if (type === 'Update') {
+            setEditable(false);
+            updateData(obj, obj.id, `verbs/${appUser.id}`, setBoth, setShowLoader);
+        }
+    }
+    function setClose(t) {
+        if (t === 'edit') {
+            setEditable(false);
+        }
+        setShowPopUp(false);
+    }
+
     return (
         <>
-            <nav className="filter">
-                <div>
-                    <label htmlFor="statusFilter">Status</label>
-                    <select id="statusFilter">
-                        <option value="All">All</option>
-                        <option value="cpt">Complete</option>
-                        <option value="inCpt">InComplete</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="box">Box</label>
-                    <select id="box">
-                        <option value="All">All</option>
-                        <option value="B1">Box 1</option>
-                        <option value="B2">Box 2</option>
-                        <option value="B3">Box 3</option>
-                        <option value="B4">Box 4</option>
-                        <option value="B5">Box 5</option>
-                        <option value="B6">Box 6</option>
-                    </select>
-                </div>
-                <input type="text" id="input" placeholder="Search" />
-            </nav>
-
-            <div className="tableContainer">
-                <p>2 out of 3</p>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th nowrap='true'>SENTENCE IN HINDI</th>
-                            <th nowrap='true'>SENTENCE IN ENGLISH</th>
-                            <th nowrap='true' style={{ width: '160px', minWidth: '160px' }}>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="container">
-
-                    </tbody>
-                </table>
+            <Loader showLoader={showLoader} />
+            <Filter filter={filterData} />
+            <Table tableAction={tableAction} data={data} length={db.length} />
+            <AddUpdate showPopUp={showPopUp} addUpdate={addUpdate} editable={editable} setClose={setClose} />
+            <div className="addBtnBox">
+                <button type="button" onClick={() => setShowPopUp(true)}>+</button>
             </div>
         </>
     )

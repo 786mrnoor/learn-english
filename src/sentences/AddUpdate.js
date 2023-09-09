@@ -13,6 +13,9 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
         if (editable) {
             setData(editable);
         }
+        else {
+            setData(initialVal);
+        }
         setIsEditable(editable);
     }
 
@@ -74,7 +77,7 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
                     </ul>
                 </main>
                 <footer>
-                    <button id="resetBtn">Reset</button>
+                    <button onClick={() => setData(initialVal)}>Reset</button>
                     <button type='button' onClick={handleSubmit}>{editable ? 'Update' : 'Add'} Sentence</button>
                 </footer>
             </div>

@@ -20,9 +20,8 @@ export default function Sentences() {
         setData(d);
     }
     const appUser = useContext(UserContext);
-    const [showLoader, setShowLoader] = useState(false);
+    const [showLoader, setShowLoader] = useState(true);
     const navigate = useNavigate();
-
     useEffect(() => {
         if (appUser !== 'logout' && appUser !== null) {
             getAllData(`snt/${appUser.id}`, setBoth, setShowLoader);
@@ -68,6 +67,7 @@ export default function Sentences() {
             InsertData(obj, `snt/${appUser.id}`, setBoth, setShowLoader);
         }
         if (type === 'Update') {
+            setEditable(false);
             updateData(obj, obj.id, `snt/${appUser.id}`, setBoth, setShowLoader);
         }
     }

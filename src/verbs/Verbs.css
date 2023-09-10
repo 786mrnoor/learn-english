@@ -18,8 +18,15 @@
     color: royalblue;
     cursor: pointer;
     transition: 0.2s all;
+    box-shadow: 2px 2px 10px black;
 }
 
-.addBtnBox button:hover {
-    box-shadow: 2px 2px 10px black;
+.addBtnBox button:hover,
+.addBtnBox button:focus {
+    background-color: royalblue;
+    color: white;
+}
+
+.addBtnBox button:active {
+    scale: 0.9;
 }

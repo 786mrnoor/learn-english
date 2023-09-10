@@ -13,37 +13,42 @@ const initialVal = {
 export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) {
     const [data, setData] = useState(initialVal);
     const [isEditable, setIsEditable] = useState(false);
-    // let keyDown = false;
-    // window.addEventListener('keyup', () => {
-    //     console.log('\nup');
-    //     keyDown = false;
-    // });
-    // window.addEventListener('keydown', (e) => {
-    //     if (!keyDown) {
-    //         if (showPopUp && e.ctrlKey && (e.key === 's' || e.key === 'S')) {
-    //             e.preventDefault();
-    //             keyDown = true;
-    //             handleSubmit();
-    //             console.log('\n\tdown');
-    //         }
-    //     }
-    // })
+    const [suggest, setSuggest] = useState(true);
 
     if (isEditable !== editable) {
         if (editable) {
             setData(editable);
+            setSuggest(false);
         }
         else {
             setData(initialVal);
+            setSuggest(true);
         }
         setIsEditable(editable);
     }
 
     function handleChange(e) {
-        setData({
-            ...data,
-            [e.target.id]: e.target.value
-        })
+        let val = e.target.value;
+        let id = e.target.id;
+        if (suggest && id === 'verb0') {
+            setData({
+                ...data,
+                verb0: val,
+                verb1: val + 'ed',
+                verb2: val + 'ed',
+                verb3: val + 'ing',
+                verb4: val + 's'
+            })
+        }
+        else {
+            setData({
+                ...data,
+                [id]: val
+            })
+        }
+        if (suggest && id !== 'verb0' && id !== 'mean') {
+            setSuggest(false);
+        }
     }
     function handleSubmit() {
         let obj = {
@@ -69,6 +74,7 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
                 return
             }
         }
+        setSuggest(true);
         if (isEditable) {
             obj.id = data.id;
             obj.sts = data.sts;
@@ -138,3 +144,24 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
         </div>
     )
 }
+
+    // let keyDown = true;
+    // window.addEventListener('keyup', (e) => {
+    //     console.log('up');
+    //     if (!keyDown) {
+    //         console.log('UP inner');
+    //         keyDown = true;
+    //     }
+    // })
+
+    // window.addEventListener('keydown', (e) => {
+    //     console.log('down');
+    //     if (keyDown) {
+    //         if (showPopUp && e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+    //             console.log('down inner');
+    //             e.preventDefault();
+    //             keyDown = false;
+    //             handleSubmit();
+    //         }
+    //     }
+    // })

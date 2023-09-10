@@ -12,7 +12,7 @@ export default function Table({ tableAction, data, length }) {
                         <th>V3</th>
                         <th>V4</th>
                         <th>V5</th>
-                        <th nowrap='true' style={{ width: '160px', minWidth: '160px' }}>Actions</th>
+                        <th nowrap='true' style={{ width: '130px', minWidth: '130px' }}>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="container">

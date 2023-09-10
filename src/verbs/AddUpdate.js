@@ -13,6 +13,21 @@ const initialVal = {
 export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) {
     const [data, setData] = useState(initialVal);
     const [isEditable, setIsEditable] = useState(false);
+    // let keyDown = false;
+    // window.addEventListener('keyup', () => {
+    //     console.log('\nup');
+    //     keyDown = false;
+    // });
+    // window.addEventListener('keydown', (e) => {
+    //     if (!keyDown) {
+    //         if (showPopUp && e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+    //             e.preventDefault();
+    //             keyDown = true;
+    //             handleSubmit();
+    //             console.log('\n\tdown');
+    //         }
+    //     }
+    // })
 
     if (isEditable !== editable) {
         if (editable) {
@@ -39,15 +54,18 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
                 data.verb1.toUpperCase(),
                 data.verb2.toUpperCase(),
                 data.verb3.toUpperCase(),
-                data.verb4.toUpperCase()]
+                data.verb4.toUpperCase()
+            ]
         }
         if (obj.mean === '') {
-            alert('Please Fill The Meaning Field.');
+            console.log('Please Fill The Meaning Field.');
+            // alert('Please Fill The Meaning Field.');
             return
         }
         for (let i of obj.verb) {
             if (i === '') {
-                alert('Please Fill All The Verbs Box.');
+                console.log('Please Fill All The Verbs Box.');
+                // alert('Please Fill All The Verbs Box.');
                 return
             }
         }
@@ -74,7 +92,7 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
         <div className="popUp" style={{ display: showPopUp ? 'block' : 'none' }}>
             <div className="addBox">
                 <header>
-                    <h2>{editable ? 'Update' : 'Add New'} Sentence</h2>
+                    <h2>{editable ? 'Update' : 'Add New'} Verb</h2>
                     <button type="button" onClick={close}>X</button>
                 </header>
                 <main>
@@ -114,7 +132,7 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
                 </main>
                 <footer>
                     <button onClick={() => setData(initialVal)}>Reset</button>
-                    <button type='button' onClick={handleSubmit}>{editable ? 'Update' : 'Add'} Sentence</button>
+                    <button type='button' onClick={handleSubmit}>{editable ? 'Update' : 'Add'} Verb</button>
                 </footer>
             </div>
         </div>

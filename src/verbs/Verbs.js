@@ -39,7 +39,7 @@ export default function Verbs() {
             for (let i of item.verb) {
                 if (
                     (i.toUpperCase().includes(inputVal)) &&
-                    (typeVal == 'All' || typeVal == item.type) &&
+                    (typeVal === 'All' || typeVal === item.type) &&
                     (obj.statusFilter === 'All' || obj.statusFilter === item.sts)
                 ) {
                     return true;
@@ -95,9 +95,11 @@ export default function Verbs() {
         }
     }
     function addUpdate(type, obj) {
-        let dup = checkDuplicate(obj);
-        if (dup) {
-            return;
+        if (type === 'Add') {
+            let dup = checkDuplicate(obj);
+            if (dup) {
+                return;
+            }
         }
         setShowLoader(true);
         setShowPopUp(false);

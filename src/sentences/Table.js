@@ -8,7 +8,7 @@ export default function Table({ tableAction, data, length }) {
                     <tr>
                         <th nowrap='true'>SENTENCE IN HINDI</th>
                         <th nowrap='true'>SENTENCE IN ENGLISH</th>
-                        <th nowrap='true' style={{ width: '160px', minWidth: '160px' }}>Actions</th>
+                        <th nowrap='true' style={{ width: '130px', minWidth: '130px' }}>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="container">

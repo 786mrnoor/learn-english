@@ -26,7 +26,7 @@ export default function Filter({ filter }) {
                 </select>
             </div>
             <div>
-                <label htmlFor="type">Box</label>
+                <label htmlFor="type">Type</label>
                 <select name="type" onChange={handleChange} value={data.box}>
                     <option value="All">All</option>
                     <option value="reg">Regular</option>

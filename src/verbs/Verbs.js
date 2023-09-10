@@ -80,7 +80,25 @@ export default function Verbs() {
             }
         }
     }
+    function checkDuplicate(obj) {
+        for (let i of db) {
+            for (let j = 0; j < 5; j++) {
+                if (i.verb[j] === obj.verb[j]) {
+                    if (window.confirm('This Verb is Already Added.\nDo you want to readd.')) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
     function addUpdate(type, obj) {
+        let dup = checkDuplicate(obj);
+        if (!dup) {
+            return;
+        }
         setShowLoader(true);
         setShowPopUp(false);
         obj.time = JSON.stringify(new Date())

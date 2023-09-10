@@ -34,7 +34,12 @@ export default function AddUpdate({ showPopUp, addUpdate, editable, setClose }) 
         let obj = {
             mean: data.mean,
             type: data.type,
-            verb: [data.verb0, data.verb1, data.verb2, data.verb3, data.verb4]
+            verb: [
+                data.verb0.toUpperCase(),
+                data.verb1.toUpperCase(),
+                data.verb2.toUpperCase(),
+                data.verb3.toUpperCase(),
+                data.verb4.toUpperCase()]
         }
         if (obj.mean === '') {
             alert('Please Fill The Meaning Field.');

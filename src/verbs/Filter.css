@@ -1,5 +1,6 @@
 nav.filter {
     position: sticky;
+    z-index: 99;
     top: 0;
     width: 100%;
     background-color: white;

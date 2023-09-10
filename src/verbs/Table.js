@@ -1,9 +1,36 @@
+import { useState } from 'react';
 import './Table.css'
 export default function Table({ tableAction, data, length }) {
+    const [all, setAll] = useState(' show');
+    function showHide(e) {
+        if (e.target.type === 'button') {
+            return;
+        }
+        e.currentTarget.classList.toggle('show');
+    }
+    function showData(d) {
+        let txt = ''
+        for (let i = 0; i < d.length; i++) {
+            txt += 'X';
+        }
+        return txt;
+    }
+    function showAll() {
+        if (all === ' show') {
+            setAll('');
+        }
+        else {
+            setAll(' show')
+        }
+    }
+
     return (
         <div className="tableContainer">
-            <p style={{ textAlign: 'center', marginBottom: '10px', fontSize: '19px' }}>{data.length} out of {length}</p>
-            <table border="1">
+            <header>
+                <p>{data.length} out of {length}</p>
+                <button type='button' onClick={showAll}>{all === '' ? 'Hide' : 'Show'} all</button>
+            </header>
+            <table>
                 <thead>
                     <tr>
                         <th>Meaning</th>
@@ -17,13 +44,13 @@ export default function Table({ tableAction, data, length }) {
                 </thead>
                 <tbody id="container">
                     {data.map(item =>
-                        <tr key={item.id} className={item.sts}>
+                        <tr key={item.id} className={item.sts + all} onClick={(e) => showHide(e)}>
                             <td>{item.mean}</td>
-                            <td>{item.verb[0]}</td>
-                            <td>{item.verb[1]}</td>
-                            <td>{item.verb[2]}</td>
-                            <td>{item.verb[3]}</td>
-                            <td>{item.verb[4]}</td>
+                            <td data-show={showData(item.verb[0])} >{item.verb[0]}</td>
+                            <td data-show={showData(item.verb[1])}>{item.verb[1]}</td>
+                            <td data-show={showData(item.verb[2])}>{item.verb[2]}</td>
+                            <td data-show={showData(item.verb[3])}>{item.verb[3]}</td>
+                            <td data-show={showData(item.verb[4])}>{item.verb[4]}</td>
                             <td>
                                 <button type='button' onClick={() => tableAction('edit', item)}>Edit</button>
                                 <button type='button' onClick={() => tableAction('del', item.id)}>Del</button>

@@ -12,16 +12,18 @@ table {
     border: 1px solid royalblue;
 }
 
+table th,
+table td {
+    padding: 10px 5px;
+    position: relative;
+    border: 1px solid royalblue;
+}
 table th {
     background-color: royalblue;
     color: white;
     border-color: white;
 }
 
-table th,
-table td {
-    padding: 10px 5px;
-}
 
 table td button {
     background-color: royalblue;
@@ -34,6 +36,47 @@ table td button {
     cursor: pointer;
 }
 
-table tr.cpt {
-    background-color: #b9ebb9;
+table tr.show td:not(:nth-child(1), :nth-child(7))::after {
+    content: attr(data-show);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table tr.cpt,
+table tr.cpt.show td::after {
+    background-color: #b9ebb9 !important;
+}
+
+
+
+.tableContainer header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.tableContainer header p {
+    font-size: 19px;
+}
+
+.tableContainer header button {
+    padding: 10px;
+    background-color: royalblue;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
 }

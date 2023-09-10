@@ -9,7 +9,7 @@
     position: absolute;
     right: 2%;
     top: 100%;
-    z-index: 99;
+    z-index: 9999;
     background-color: #f1faff;
     border-radius: 20px;
     padding: 20px;

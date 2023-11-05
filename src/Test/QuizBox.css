@@ -1,0 +1,172 @@
+.quiz-box {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(173, 171, 171);
+    background-color: white;
+}
+
+:root {
+    --show: block;
+}
+
+:root:has(.quiz-box header .check-box input:checked) {
+    --show: none;
+}
+
+:root:has(.quiz-box main ul li.correct) {
+    --show: none;
+}
+
+.quiz-box header {
+    padding: 25px;
+    box-shadow: 2px 0px 8px gray;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.quiz-box header .check-box label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.quiz-box header .check-box input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.quiz-box header .check-box .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.quiz-box header .check-box .slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.quiz-box header .check-box input:checked+.slider {
+    background-color: #2196F3;
+}
+
+.quiz-box header .check-box input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.quiz-box header .check-box input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.quiz-box main {
+    padding: 25px;
+}
+
+.quiz-box main h3 {
+    white-space: pre-line;
+}
+
+.quiz-box main ul#options {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.quiz-box main ul#options li {
+    position: relative;
+    background: aliceblue;
+    border: 1px solid #84c5fe;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz-box main ul#options.disabled li {
+    pointer-events: none !important;
+}
+
+.quiz-box main ul#options li:first-child::after {
+    display: var(--show);
+    content: attr(data-show);
+    position: absolute;
+    inset: 0;
+    padding: 8px 15px;
+    font-size: 16px;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+.quiz-box main ul#options li.disabled {
+    pointer-events: none;
+}
+
+/* correct incorrect */
+.quiz-box main ul#options li.correct {
+    background-color: #c8e4cf;
+    color: #155724;
+    border-color: #63ae74;
+}
+
+.quiz-box main ul#options li.incorrect {
+    color: #721c24;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.quiz-box footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-top: 1px solid gray;
+}
+
+.quiz-box footer button {
+    padding: 12px 20px;
+    font-size: 18px;
+    outline: none;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.quiz-box footer button:hover {
+    box-shadow: 0 0 6px rgb(103, 102, 102);
+}
+
+.quiz-box footer button.disabled {
+    pointer-events: none;
+    background-color: transparent;
+    color: var(--primary);
+}

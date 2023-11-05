@@ -23,28 +23,32 @@ export default function Table({ tableAction, data, length }) {
             setAll(' hide')
         }
     }
+
     return (
-        <div className="tableContainer sentence">
+        <div className="tableContainer noun">
             <header>
                 <p>{data.length} out of {length}</p>
                 <button type='button' onClick={showAll}>{all === '' ? 'Hide' : 'Show'} all</button>
+                <button type='button' onClick={() => tableAction('showTest')}>Start Test</button>
             </header>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
-                        <th nowrap='true'>SENTENCE IN HINDI</th>
-                        <th nowrap='true'>SENTENCE IN ENGLISH</th>
+                        <th>Hindi</th>
+                        <th>English</th>
+                        <th>Att / Crt</th>
                         <th nowrap='true' style={{ width: '130px', minWidth: '130px' }}>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="container">
+                <tbody id="container noun">
                     {data.map(item =>
                         <tr key={item.id} className={item.sts + all} onClick={(e) => showHide(e)}>
-                            <td data-show={showData(item.hin)}>{item.hin}</td>
+                            <td data-show={showData(item.hin)} >{item.hin}</td>
                             <td data-show={showData(item.eng)}>{item.eng}</td>
+                            <td>{item.att} / {item.crt}</td>
                             <td>
                                 <button type='button' onClick={() => tableAction('edit', item)}>Edit</button>
-                                <button type='button' onClick={() => tableAction('del', item.id)}>Del</button>
+                                <button type='button' onClick={() => tableAction('del', item)}>Del</button>
                                 <button type='button' onClick={() => tableAction('cpt', item)}>{item.sts === 'cpt' ? 'inc' : 'cpt'}</button>
                             </td>
                         </tr>

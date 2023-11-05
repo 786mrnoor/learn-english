@@ -1,0 +1,35 @@
+.test-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(1, 64, 255, 1); */
+    overflow: auto;
+    --primary: #0140ff;
+}
+
+.test-wrapper button.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 8px 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background-color: var(--primary);
+    border: 2px solid white;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    transition: 0.4s ease all;
+}
+
+.test-wrapper button.close:focus {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+.test-wrapper button.close:active {
+    background-color: white;
+    border-color: var(--primary);
+    color: var(--primary);
+}

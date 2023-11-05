@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './Table.css'
 export default function Table({ tableAction, data, length }) {
-    const [all, setAll] = useState(' show');
+    const [all, setAll] = useState(' hide');
     function showHide(e) {
         if (e.target.type === 'button') {
             return;
         }
-        e.currentTarget.classList.toggle('show');
+        e.currentTarget.classList.toggle('hide');
     }
     function showData(d) {
         let txt = ''
@@ -16,16 +16,16 @@ export default function Table({ tableAction, data, length }) {
         return txt;
     }
     function showAll() {
-        if (all === ' show') {
+        if (all === ' hide') {
             setAll('');
         }
         else {
-            setAll(' show')
+            setAll(' hide')
         }
     }
 
     return (
-        <div className="tableContainer">
+        <div className="tableContainer verb">
             <header>
                 <p>{data.length} out of {length}</p>
                 <button type='button' onClick={showAll}>{all === '' ? 'Hide' : 'Show'} all</button>

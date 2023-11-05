@@ -34,6 +34,37 @@ table td button {
     cursor: pointer;
 }
 
-table tr.cpt {
+.tableContainer header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.tableContainer header p {
+    font-size: 19px;
+}
+
+.tableContainer table tr.cpt {
     background-color: #b9ebb9;
+}
+.sentence table tr.hide td:nth-child(2)::after {
+    content: attr(data-show);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sentence table tr.cpt,
+.sentence table tr.cpt.hide td::after {
+    background-color: #b9ebb9 !important;
 }

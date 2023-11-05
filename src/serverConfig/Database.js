@@ -86,4 +86,4 @@ function uniqueId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-export { uniqueId, getAllData, InsertData, updateData, deleteData }
+export { uniqueId, getAllData, InsertData, updateData, deleteData, updateMultipleData }

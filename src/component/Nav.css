@@ -27,6 +27,7 @@ nav.topNav ul {
     justify-content: center;
     align-items: center;
     column-gap: 10px;
+    flex-wrap: wrap;
 }
 
 nav.topNav ul li a {

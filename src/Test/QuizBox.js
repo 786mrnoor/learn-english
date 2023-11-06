@@ -8,6 +8,7 @@ export default function QuizBox({ quizSetting, questions, updateResult, reset })
     const [index, setIndex] = useState(0);
     const [quizSet, setQuizSet] = useState(quizSetting);
     const [dbUpdated, setDbUpdated] = useState(false);
+    const [showOption, setShowOption] = useState(false);
     const appUser = useContext(UserContext);
     if (quizSetting.start !== quizSet.start) {
         //if reset 
@@ -23,7 +24,7 @@ export default function QuizBox({ quizSetting, questions, updateResult, reset })
     }
     function selectedOption(e) {
         let elem = e.target;
-        if (quest[index][quizSet.ans] === elem.innerText) {
+        if (quest[index][quizSet.ans].trim() === elem.innerText.trim()) {
             setAnswer([...answer, true]);
         }
         else {
@@ -43,14 +44,21 @@ export default function QuizBox({ quizSetting, questions, updateResult, reset })
                 })
                 updateResult(obj)
             }
+            setShowOption(false);
             return;
         }
-        setIndex((i) => i + n)
+        setIndex((i) => i + n);
+        setShowOption(false);
     }
     function setData(d) {
         let txt = ''
         for (let i in d) {
-            txt += 'X';
+            if (d[i] === ' ') {
+                txt += ' ';
+            }
+            else {
+                txt += 'X';
+            }
         }
         return txt;
     }
@@ -73,8 +81,8 @@ export default function QuizBox({ quizSetting, questions, updateResult, reset })
                     <h3>Question No. : {index + 1} out of {quest.length}</h3>
                     <div className='check-box'>
                         <label htmlFor="ShowOption">
-                            <input type="checkbox" id='ShowOption' />
-                            <div className="slider"></div>
+                            {/* <input type="checkbox" id='ShowOption' /> */}
+                            <div onClick={() => setShowOption(!showOption)} className={showOption ? 'slider checked' : 'slider'}></div>
                         </label>
                     </div>
                 </header>

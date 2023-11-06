@@ -11,7 +11,7 @@
     --show: block;
 }
 
-:root:has(.quiz-box header .check-box input:checked) {
+:root:has(.quiz-box header .check-box .slider.checked) {
     --show: none;
 }
 
@@ -68,15 +68,15 @@
     border-radius: 50%;
 }
 
-.quiz-box header .check-box input:checked+.slider {
+.quiz-box header .check-box .slider.checked {
     background-color: #2196F3;
 }
 
-.quiz-box header .check-box input:focus+.slider {
+.quiz-box header .check-box .slider.checked {
     box-shadow: 0 0 1px #2196F3;
 }
 
-.quiz-box header .check-box input:checked+.slider:before {
+.quiz-box header .check-box .slider.checked:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);

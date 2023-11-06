@@ -40,7 +40,7 @@ export default function Table({ tableAction, data, length }) {
                     <tr>
                         <th>Hindi</th>
                         <th>English</th>
-                        <th>Att / Crt</th>
+                        <th style={{ minWidth: '50px' }}>Att / Crt</th>
                         <th nowrap='true' style={{ width: '130px', minWidth: '130px' }}>Actions</th>
                     </tr>
                 </thead>

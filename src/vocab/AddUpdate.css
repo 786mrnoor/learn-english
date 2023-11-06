@@ -13,7 +13,7 @@
     max-width: 500px;
     border-radius: 20px;
     box-shadow: 0px 0px 7px black;
-    animation: rot 1.4s ease;
+    animation: rot 1s ease;
 }
 
 @keyframes rot {

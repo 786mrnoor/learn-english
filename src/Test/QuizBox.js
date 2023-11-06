@@ -92,6 +92,12 @@ export default function QuizBox({ quizSetting, questions, updateResult, reset })
                         <li onClick={selectedOption} className={answer.length > index ? answer[index] ? 'correct' : 'correct' : ''} data-show={setData(quest[index][quizSet.ans])}>{quest[index][quizSet.ans]}</li>
                         <li onClick={selectedOption} className={answer.length > index ? answer[index] ? '' : 'incorrect' : ''} >False</li>
                     </ul>
+                    <div className={index < answer.length ? quest[index]['eg'].length ? 'example-container show' : 'example-container' : 'example-container'}>
+                        <div className='example'>
+                            <h4>Example:</h4>
+                            <p>{quest[index]['eg']}</p>
+                        </div>
+                    </div>
                 </main>
                 <footer>
                     <button onClick={() => next(-1)} className={index > 0 ? '' : 'disabled'}>Previous</button>

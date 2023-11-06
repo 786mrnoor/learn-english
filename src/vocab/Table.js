@@ -11,7 +11,11 @@ export default function Table({ tableAction, data, length }) {
     function showData(d) {
         let txt = ''
         for (let i = 0; i < d.length; i++) {
-            txt += 'X';
+            if (d[i] === ' ') {
+                txt += ' ';
+            } else {
+                txt += 'X';
+            }
         }
         return txt;
     }
